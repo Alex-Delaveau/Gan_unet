@@ -1,1 +1,3 @@
 venv_gan/
+src/*/__pycache__/
+visualizations/

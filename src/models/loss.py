@@ -27,8 +27,7 @@ def discriminator_loss(real_output, fake_output):
     - real_output: discriminator predictions for real images.
     - fake_output: discriminator predictions for generator outputs.
     """
-    real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
-        labels=tf.ones_like(real_output), logits=real_output))
-    fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
-        labels=tf.zeros_like(fake_output), logits=fake_output))
+    real_loss = tf.keras.losses.BinaryCrossentropy(from_logits=True)(tf.ones_like(real_output), real_output)
+    fake_loss = tf.keras.losses.BinaryCrossentropy(from_logits=True)(tf.zeros_like(fake_output), fake_output)
     return real_loss + fake_loss
+

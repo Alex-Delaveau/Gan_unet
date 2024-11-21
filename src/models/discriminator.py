@@ -1,6 +1,6 @@
 from tensorflow.keras import layers, models
 
-def build_discriminator(input_shape=(256, 256, 3)):
+def build_discriminator(input_shape):
     """Builds a discriminator model."""
     input_img = layers.Input(shape=input_shape)
 
@@ -16,6 +16,6 @@ def build_discriminator(input_shape=(256, 256, 3)):
     x = layers.LeakyReLU(0.2)(x)
     
     x = layers.Flatten()(x)
-    x = layers.Dense(1, activation="sigmoid")(x)  # Real or fake
+    x = layers.Dense(1)(x)  # Real or fake
 
     return models.Model(input_img, x)
